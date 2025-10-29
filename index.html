@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newfy Beat</title>
     <link rel="icon" href="logo.icon" type="image/x-icon">
+    
     <style>
+        /* 1. Correção das Unidades de Medida e Variáveis */
         :root{
             --primary: #c92525; 
             --primary-dark: #a21b1b;
@@ -16,99 +18,114 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            margin: 0%;
-            padding: 0%;
+            margin: 0;
+            padding: 0;
             background-color: var(--muted-bg);
             color: #222;
+            min-height: 100vh; /* Garante que o body ocupa a tela toda */
+            display: flex; /* Flex para posicionar o footer embaixo */
+            flex-direction: column;
         }
 
-               header {
+        /* 2. Header (Usando Flexbox e unidades corretas) */
+        header {
             display: flex;
             align-items: center;
-            gap: 12%;
+            gap: 2rem; /* Espaço entre logo e texto */
             background: var(--primary);
             color: white;
-            padding: 12% 20%;
+            padding: 1.5rem 10%; /* Padding ajustado (1.5rem no topo/fundo, 10% nas laterais) */
             text-align: left;
-            box-shadow: 0 2% 6% rgba(0,0,0,0.08);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        
         #site-logo {
-            height: 48%;
+            height: 3rem; /* Tamanho da logo ajustado */
             width: auto;
             display: inline-block;
-            border-radius: 6%;
+            border-radius: 6px;
             background: rgba(255,255,255,0.06);
-            padding: 4%;
+            padding: 0.5rem;
+        }
+        
+        /* Ajustando a div que contém o título e slogan */
+        .header-text {
+            /* Remove a margem desnecessária que estava no p */
+            margin-left: 0;
         }
 
         header h1 {
             margin: 0;
-            font-size: 32%;
-            letter-spacing: 0.5%;
+            font-size: 2rem; /* Tamanho da fonte ajustado */
+            letter-spacing: 0.5px;
         }
 
         header p {
             margin: 0;
             font-style: italic;
-            font-size: 14%;
+            font-size: 0.9rem; /* Tamanho da fonte ajustado */
             opacity: 0.9;
         }
 
-        
+        /* 3. Container Principal (Usando Flexbox para o layout de colunas) */
         .container {
-            width: 80%;
-            max-width: 900%;
-            margin: 20% auto;
+            width: 90%; /* Mais largo em telas pequenas */
+            max-width: 900px; /* Max-width corrigido */
+            margin: 2rem auto; /* Margem ajustada */
             background: white;
-            padding: 20%;
-            border-radius: 5%;
-            overflow: hidden;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            flex-grow: 1; /* Permite que o container cresça */
+
+            /* Novo: Flexbox para layout de 2 colunas */
+            display: flex;
+            gap: 2rem; 
         }
 
-       
+        /* Removendo floats antigos */
         .left {
-            float: left;
-            width: 60%;
+            flex: 2; /* Ocupa mais espaço (2/3) */
         }
 
         .left h2 {
             color: #c92525;
+            margin-top: 0;
         }
 
         .left p {
             color: #333;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        
         form {
-            margin-top: 15%;
+            margin-top: 1rem;
         }
 
         label {
             display: block;
-            margin-top: 10%;
+            margin-top: 1rem;
             font-weight: bold;
         }
 
         input[type="text"],
         input[type="password"] {
-            width: 90%;
-            padding: 6%;
-            margin-top: 5%;
-            border: 1% solid #ccc;
-            border-radius: 3%;
+            width: 90%; 
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Inclui padding na largura */
         }
 
         input[type="submit"] {
             background: #c92525;
             color: white;
             border: none;
-            padding: 8% 15%;
-            border-radius: 3%;
-            margin-top: 10%;
+            padding: 0.6rem 1rem;
+            border-radius: 3px;
+            margin-top: 1rem;
             cursor: pointer;
         }
 
@@ -116,38 +133,78 @@
             background: #a81f1f;
         }
 
-        
+        /* Removendo floats antigos */
         .right {
-            float: right;
-            width: 35%;
+            flex: 1; /* Ocupa menos espaço (1/3) */
             background: #f1f3f9;
-            padding: 15%;
-            border-radius: 5%;
+            padding: 1rem;
+            border-radius: 5px;
         }
 
         .right h3 {
             color: #004080;
+            margin-top: 0;
         }
 
         .right p {
             color: #333;
-            font-size: 14%;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        
+        /* 4. Footer (Limpeza e ajuste de unidades) */
         footer {
-            clear: both;
             background: #c92525;
             color: white;
             text-align: center;
-            padding: 10%;
-            font-size: 12%;
-            margin-top: auto ;
+            padding: 1rem;
+            font-size: 0.8rem;
+            margin-top: 0; 
         }
 
         footer a {
             color: white;
             text-decoration: none;
+        }
+
+        /* 5. MEDIA QUERY (Responsividade para telas menores que 768px) */
+        @media (max-width: 768px) {
+            
+            header {
+                flex-direction: column; /* Empilha logo e texto no header */
+                text-align: center;
+                padding: 1rem 0; /* Menos padding lateral */
+                gap: 0.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                margin-left: 0;
+                font-size: 0.8rem;
+            }
+
+            .container {
+                flex-direction: column; /* Empilha as colunas .left e .right */
+                width: 95%; 
+                padding: 1rem;
+                margin: 1rem auto;
+                gap: 1rem;
+            }
+            
+            /* O formulário do Google fica muito grande no celular, vamos limitá-lo */
+            .left iframe {
+                width: 100%;
+                height: auto;
+                min-height: 500px; /* Mantém a altura mínima para ser usável */
+            }
+            
+            input[type="text"],
+            input[type="password"] {
+                width: 98%; 
+            }
         }
     </style>
 </head>
@@ -155,34 +212,25 @@
 
     <header>
         <img id="site-logo" src="logo.icon" alt="Logo Newfy Beat">
-        <h1>Newfy Beat</h1>
-        <p style="margin-left:8%;">O</p>
+        <div class="header-text">
+            <h1>Newfy Beat</h1>
+            <p>O melhor som para a sua rede.</p>
+        </div>
     </header>
-    
-    <link rel="icon" href="logo.icon" type="image/x-icon">
+
     <div class="container">
         <div class="left">
-            <h2>Oque é a Newfy Beat</h2>
+            <h2>O que é a Newfy Beat</h2>
             <p>Nosso projeto se trata da ideia de uma rede social voltada para todo e qualquer tipo de música, buscando uma interação entre usuários com gostos similares, recomendações por algoritmo baseado nas atividades recentes do usuário e diversas outras funções dentro do meio musical.</p>
 
             <h2>Quem somos?</h2>
             <p>Somos um grupo de estudantes do curso de Desenvolvimento de Sistemas que buscamos levar a ideia de nosso projeto a frente, hoje apresentando apenas uma demonstração do que seria uma página de nosso site!.</p>
 
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJmnJe_x8NvodO1l1UTw80LTrz8st7JdMjCngYdkyeTleEbA/viewform?embedded=true" width="100%" height="933" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
 
-
-           
-   
-
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJmnJe_x8NvodO1l1UTw80LTrz8st7JdMjCngYdkyeTleEbA/viewform?embedded=true" width="640" height="933" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
-  
-
- 
-            
-        </div>
+            </div>
 
         <div class="right">
-        
-
             <h3>Como nos contatar</h3>
             <p>andrelz7carvalho@gmail.com </p>
             <p>otaviopinheiro242@gmail.com</p>
@@ -190,11 +238,8 @@
     </div>
 
     <footer>
-    &copy; 2025 Newfy Beat. Todos os direitos reservados / <a href="Direitos de privacidade /"   ></a>
+    &copy; 2025 Newfy Beat. Todos os direitos reservados. | <a href="#" >Direitos de Privacidade</a>
     </footer>
 
-
-   
-</script>
 </body>
 </html>
